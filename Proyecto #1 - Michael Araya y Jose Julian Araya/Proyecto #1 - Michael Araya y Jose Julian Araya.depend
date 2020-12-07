@@ -1,9 +1,9 @@
 # depslib dependency file v1.0
-1607302183 source:c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\main.cpp
+1607304170 source:c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\main.cpp
 	<iostream>
-	"AVLTreeDictionary.h"
+	"Trie.h"
 
-1607302183 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\avltreedictionary.h
+1607304451 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\avltreedictionary.h
 	<iostream>
 	"Dictionary.h"
 	"KVPair.h"
@@ -24,10 +24,19 @@
 
 1607300435 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\bstnode.h
 
-1607300435 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\dlinkedlist.h
+1607304513 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\dlinkedlist.h
 	"List.h"
 	"DNode.h"
 	<stdexcept>
 
 1607300435 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\dnode.h
+
+1607300435 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\trie.h
+	"TrieNode.h"
+	<string>
+	<stdexcept>
+	<iostream>
+
+1607303462 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\trienode.h
+	"AVLTreeDictionary.h"
 

@@ -18,7 +18,8 @@ private:
 public:
     DLinkedList() {
         current = head = new DNode<E>();
-        tail = new DNode<E>(nullptr, head);
+        tail = new DNode<E>();
+        tail->setPrevious(head);
         head->setNext(tail);
         size = 0;
     }

@@ -94,7 +94,7 @@ class AVLTreeDictionary : public Dictionary<K, V>
 
         //9. ------------ getValues ---------------
         List<V>* getValues(){
-            List<V>* valores = new DLinkedList<V>();
+            List<V> * valores = new DLinkedList<V>();
             List<KVPair<K, V>>* elementos = pairs.getElements();
 
                 for(elementos->goToStart(); !elementos->atEnd(); elementos->next()){

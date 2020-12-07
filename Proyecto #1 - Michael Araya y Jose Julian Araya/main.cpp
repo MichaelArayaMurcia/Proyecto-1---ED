@@ -1,5 +1,5 @@
 #include <iostream>
-#include "AVLTreeDictionary.h"
+#include "Trie.h"
 
 using namespace std;
 

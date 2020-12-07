@@ -1,13 +1,13 @@
 #ifndef TRIENODE_H
 #define TRIENODE_H
 
-#include "SortedArrayDictionary.h"
+#include "AVLTreeDictionary.h"
 
 class TrieNode {
 private:
     bool isFinal;
     int prefixCount;
-    SortedArrayDictionary<char, TrieNode*> children;
+    AVLTreeDictionary<char, TrieNode*> children;
 
 public:
     TrieNode() : children() {
