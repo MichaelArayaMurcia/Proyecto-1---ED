@@ -23,6 +23,6 @@ int main()
 
     // Close the file
     MyReadFile.close();
-    cout << "Hola :3" << endl;
+    cout << "No >v" << endl;
     return 0;
 }
