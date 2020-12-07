@@ -1,4 +1,5 @@
 #include <iostream>
+#include "AVLTreeDictionary.h"
 
 using namespace std;
 

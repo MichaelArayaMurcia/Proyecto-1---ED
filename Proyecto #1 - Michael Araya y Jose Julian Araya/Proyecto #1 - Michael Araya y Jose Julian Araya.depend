@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1607302183 source:c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\main.cpp
+	<iostream>
+	"AVLTreeDictionary.h"
+
+1607302183 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\avltreedictionary.h
+	<iostream>
+	"Dictionary.h"
+	"KVPair.h"
+	<stdexcept>
+	"AVLTree.h"
+
+1607302241 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\dictionary.h
+	"list.h"
+
+1607300435 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\list.h
+
+1607300435 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\kvpair.h
+
+1607300435 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\avltree.h
+	"BSTNode.h"
+	"DLinkedList.h"
+	<stdexcept>
+
+1607300435 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\bstnode.h
+
+1607300435 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\dlinkedlist.h
+	"List.h"
+	"DNode.h"
+	<stdexcept>
+
+1607300435 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\dnode.h
+

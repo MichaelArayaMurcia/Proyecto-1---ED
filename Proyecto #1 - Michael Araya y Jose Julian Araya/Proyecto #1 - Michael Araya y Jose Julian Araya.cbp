@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -22,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -32,6 +34,20 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/AVLTree.h" />
+		<Unit filename="include/AVLTreeDictionary.h" />
+		<Unit filename="include/BSTNode.h" />
+		<Unit filename="include/BSTree.h" />
+		<Unit filename="include/BSTreeDictionary.h" />
+		<Unit filename="include/DLinkedList.h" />
+		<Unit filename="include/DNode.h" />
+		<Unit filename="include/Dictionary.h" />
+		<Unit filename="include/KVPair.h" />
+		<Unit filename="include/List.h" />
+		<Unit filename="include/SortedArrayDictionary.h" />
+		<Unit filename="include/SortedArrayList.h" />
+		<Unit filename="include/Trie.h" />
+		<Unit filename="include/TrieNode.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
