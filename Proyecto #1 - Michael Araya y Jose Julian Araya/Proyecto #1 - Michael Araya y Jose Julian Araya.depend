@@ -40,3 +40,45 @@
 1607303462 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\trienode.h
 	"AVLTreeDictionary.h"
 
+1607305967 source:c:\users\h\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\main.cpp
+	<iostream>
+	"Trie.h"
+	<fstream>
+
+1606348372 c:\users\h\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\trie.h
+	"TrieNode.h"
+	<string>
+	<stdexcept>
+	<iostream>
+
+1607305845 c:\users\h\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\trienode.h
+	"AVLTreeDictionary.h"
+
+1607305845 c:\users\h\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\avltreedictionary.h
+	<iostream>
+	"Dictionary.h"
+	"KVPair.h"
+	<stdexcept>
+	"AVLTree.h"
+
+1607302390 c:\users\h\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\dictionary.h
+	"list.h"
+
+1604097444 c:\users\h\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\list.h
+
+1603319021 c:\users\h\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\kvpair.h
+
+1606945977 c:\users\h\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\avltree.h
+	"BSTNode.h"
+	"DLinkedList.h"
+	<stdexcept>
+
+1605907698 c:\users\h\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\bstnode.h
+
+1607305845 c:\users\h\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\dlinkedlist.h
+	"List.h"
+	"DNode.h"
+	<stdexcept>
+
+1601675435 c:\users\h\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\dnode.h
+
