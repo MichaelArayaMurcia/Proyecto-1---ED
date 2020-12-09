@@ -107,6 +107,7 @@ public:
     }
     void print() {
         List<string>* words = getMatches("");
+        cout << words->getSize();
         for (words->goToStart(); !words->atEnd(); words->next()) {
             cout << words->getElement() << endl;
         }

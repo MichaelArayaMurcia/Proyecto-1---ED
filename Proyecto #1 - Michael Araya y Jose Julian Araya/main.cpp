@@ -40,8 +40,6 @@ int main()
 
 
         while (getline (MyReadFile, linea)) {
-            // cada línea del archivo
-            //cout << linea << endl;
             diccionarioLineasAVL->insert(numeroLinea, linea);
 
             string palabra = "";
@@ -49,9 +47,10 @@ int main()
 
             for(int i = 0; i < linea.size(); i++){
                 if(linea[i] != ' '){
+
                     char caracter = linea[i];
 
-                    for(int j = 0; j < signos.size(); i++){
+                    for(int j = 0; j < signos.size(); j++){
                         if(linea[i] == signos[j]){
                             linea[i] = ' ';
                         }
@@ -63,18 +62,26 @@ int main()
                     }
 
                 }
+
                 else {
-                    triePalabras->insert(palabra);
+                    cout << "Se llegó a este else";
+
+                    if(!triePalabras->containsWord(palabra)){
+                      triePalabras->insert(palabra);
+                    }
+
 
                     if(!diccionarioPalabrasListas->contains(palabra)){
                         diccionarioPalabrasListas->insert(palabra, new DLinkedList<int>());
                     }
+
                     else {
                         DLinkedList<int> *lista = diccionarioPalabrasListas->getValue(palabra);
                         lista->insert(numeroLinea);
                         diccionarioPalabrasListas->setValue(palabra, lista);
                     }
 
+                    cout << "\n Palabra: " << palabra << endl;
 
                     palabra = "";
                 }
@@ -84,9 +91,37 @@ int main()
 
         cout << numeroLinea;
 
+        //-------------------------------------------------
+        //---------------- Consulta prefijo ---------------
+        cout << "Se va a hacer la consulta";
+
+        string prefijo = "";
+
+        cout << "Inserte el prefijo que quiere buscar" << endl;
+        cin >> prefijo;
+
+        triePalabras->print();
+
+        if(!triePalabras->containsPrefix(prefijo)){
+            cout << "No se encuentra el prefijo" << endl;
+        } else {
+            List<string> *lista = triePalabras->getMatches(prefijo);
+
+            for(lista->goToStart(); !lista->atEnd(); lista->next()){
+                string palabra = lista->getElement();
+
+                DLinkedList<int> *lista = diccionarioPalabrasListas->getValue(palabra);
+                int veces = lista->getSize() + 1;
+                cout << "La palabra: " << palabra << " sale: " << veces << endl;
+
+
+            }
+        }
+
+
         // Close the file
         MyReadFile.close();
     }
-    cout << "Hola :3" << endl;
+
     return 0;
 }
