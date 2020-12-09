@@ -15,7 +15,7 @@ int main()
     SetConsoleOutputCP(1252);
 
     AVLTreeDictionary<int,string> *diccionarioLineasAVL = new AVLTreeDictionary<int,string>();
-    AVLTreeDictionary<string, DLinkedList<int>> *diccionarioPalabrasListas = new AVLTreeDictionary<string, DLinkedList<int>>();
+    AVLTreeDictionary<string, DLinkedList<int>*> *diccionarioPalabrasListas = new AVLTreeDictionary<string, DLinkedList<int>*>();
     Trie *triePalabras = new Trie();
 
     cout << "Bienvenido!" << endl;
@@ -67,11 +67,10 @@ int main()
                     triePalabras->insert(palabra);
 
                     if(!diccionarioPalabrasListas->contains(palabra)){
-                        DLinkedList<int> lista;
-                        diccionarioPalabrasListas->insert(palabra, lista);
+                        diccionarioPalabrasListas->insert(palabra, new DLinkedList<int>());
                     }
                     else {
-                        List<int> *lista = diccionarioPalabrasListas->getValue(palabra);
+                        DLinkedList<int> *lista = diccionarioPalabrasListas->getValue(palabra);
                         lista->insert(numeroLinea);
                         diccionarioPalabrasListas->setValue(palabra, lista);
                     }
