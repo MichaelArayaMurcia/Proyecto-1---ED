@@ -26,8 +26,7 @@ int main()
     string nombreArchivo = "";
 
     cout << "Ingrese el nombre del archivo que va a utilizar" << endl;
-    cin >> nombreArchivo;
-
+    getline(cin,nombreArchivo);
 
     ifstream MyReadFile(nombreArchivo + ".txt");
     if(MyReadFile.fail()){
@@ -47,7 +46,6 @@ int main()
 
             for(int i = 0; i < linea.size(); i++){
                 if(linea[i] != ' '){
-
                     char caracter = linea[i];
 
                     for(int j = 0; j < signos.size(); j++){
@@ -64,7 +62,6 @@ int main()
                 }
 
                 else {
-                    cout << "Se llegó a este else";
 
                     if(!triePalabras->containsWord(palabra)){
                       triePalabras->insert(palabra);
@@ -80,8 +77,6 @@ int main()
                         lista->insert(numeroLinea);
                         diccionarioPalabrasListas->setValue(palabra, lista);
                     }
-
-                    cout << "\n Palabra: " << palabra << endl;
 
                     palabra = "";
                 }
@@ -100,8 +95,6 @@ int main()
         cout << "Inserte el prefijo que quiere buscar" << endl;
         cin >> prefijo;
 
-        triePalabras->print();
-
         if(!triePalabras->containsPrefix(prefijo)){
             cout << "No se encuentra el prefijo" << endl;
         } else {
@@ -118,6 +111,16 @@ int main()
             }
         }
 
+        //-------------------------------------------------
+        //---------------- Buscar palabra ---------------
+        cout << "Ingrese la palabra que quiere buscar" << endl;
+        string palabra = "";
+        cin >> palabra;
+
+        if(triePalabras->containsWord(palabra)){
+
+
+        }
 
         // Close the file
         MyReadFile.close();
