@@ -95,11 +95,10 @@ int main()
             numeroLinea += 1;
         }
 
-        cout << numeroLinea;
+        //cout << numeroLinea;
 
         //-------------------------------------------------
         //---------------- Consulta prefijo ---------------
-        cout << "Se va a hacer la consulta";
 
         string prefijo = "";
 
@@ -146,7 +145,7 @@ int main()
         int cantidadLetras = 0;
         cin >> cantidadLetras;
 
-        SortedArrayList<string> *listaOrdenada = new SortedArrayList<string>();
+        SortedArrayList<string> *listaOrdenada = new SortedArrayList<string>(10000);
 
         List<string> *listaKeys = diccionarioPalabrasListas->getKeys();
 
@@ -165,6 +164,18 @@ int main()
 
         //--------------------------------------------------------
         //---------------- Palabras mas utilizadas ---------
+        SortedArrayList<KVPair<int,string>* > *listaPalabrasMasUsadas = new SortedArrayList<KVPair<int,string>*>(10000);
+        List<string> *listaPalabras = diccionarioPalabrasListas->getKeys();
+        for(listaPalabras->goToStart(); !listaPalabras->atEnd(); listaPalabras->next()){
+            DLinkedList<int> *temp = diccionarioPalabrasListas->getValue(listaPalabras->getElement());
+            listaPalabrasMasUsadas->insert(new KVPair<int,string>(temp->getSize(), listaPalabras->getElement() ) );
+        }
+        for(int i = 0; i < 50; i++){
+            KVPair<int,string> *temp = listaPalabrasMasUsadas->getElement();
+            cout<<"La palabra "<<temp->getValue()<<" se repite un total de: "<<temp->getKey()<<" veces."<<endl;
+            listaPalabrasMasUsadas->next();
+        }
+
 
 
         // Close the file

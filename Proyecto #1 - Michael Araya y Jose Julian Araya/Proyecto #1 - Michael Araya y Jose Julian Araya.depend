@@ -1,7 +1,16 @@
 # depslib dependency file v1.0
-1607304170 source:c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\main.cpp
+1607573120 source:c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\main.cpp
 	<iostream>
 	"Trie.h"
+	<fstream>
+	<windows.h>
+	<string>
+	<AVLTreeDictionary.h>
+	<locale.h>
+	<stdlib.h>
+	<stdio.h>
+	<wchar.h>
+	<SortedArrayDictionary.h>
 
 1607304451 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\avltreedictionary.h
 	<iostream>
@@ -31,7 +40,7 @@
 
 1607300435 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\dnode.h
 
-1607300435 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\trie.h
+1607482376 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\trie.h
 	"TrieNode.h"
 	<string>
 	<stdexcept>
@@ -88,4 +97,18 @@
 	<stdexcept>
 
 1601675435 c:\users\h\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\dnode.h
+
+1607300435 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\sortedarraydictionary.h
+	"Dictionary.h"
+	"SortedArrayList.h"
+	"DLinkedList.h"
+	"KVPair.h"
+	<stdexcept>
+
+1607572624 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\sortedarraylist.h
+	"arraylist.h"
+
+1607571124 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\arraylist.h
+	"list.h"
+	<stdexcept>
 

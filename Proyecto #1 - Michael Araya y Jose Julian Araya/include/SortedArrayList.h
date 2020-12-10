@@ -6,7 +6,7 @@
 template <typename E>
 class SortedArrayList : public ArrayList<E> {
 public:
-    SortedArrayList(int max = DEFAULT_MAX_SIZE) : ArrayList<E>(max) {}
+    SortedArrayList(int max) : ArrayList<E>(max) {}
     void insert(E element) {
         ArrayList<E>::goToStart();
         while (!ArrayList<E>::atEnd() && element >= ArrayList<E>::getElement()) {
