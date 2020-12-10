@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1607573998 source:c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\main.cpp
+1607643565 source:c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\main.cpp
 	<iostream>
 	"Trie.h"
 	<fstream>
@@ -11,6 +11,7 @@
 	<stdio.h>
 	<wchar.h>
 	<SortedArrayDictionary.h>
+	<AVLTreeMayor.h>
 
 1607573691 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\avltreedictionary.h
 	<iostream>
@@ -98,7 +99,7 @@
 
 1601675435 c:\users\h\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\dnode.h
 
-1607300435 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\sortedarraydictionary.h
+1607641653 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\sortedarraydictionary.h
 	"Dictionary.h"
 	"SortedArrayList.h"
 	"DLinkedList.h"
@@ -111,4 +112,6 @@
 1607571124 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\arraylist.h
 	"list.h"
 	<stdexcept>
+
+1607642351 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\avltreemayor.h
 

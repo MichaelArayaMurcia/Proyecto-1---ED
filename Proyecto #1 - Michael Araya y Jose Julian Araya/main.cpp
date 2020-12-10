@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <wchar.h>
 #include <SortedArrayDictionary.h>
+#include <AVLTreeMayor.h>
 
 using namespace std;
 
@@ -41,7 +42,7 @@ int main()
         cout << "No es posible abrir el archivo" << endl;
     }else {
         int numeroLinea = 1;
-        int numeroPalabra = 1;
+        //int numeroPalabra = 1;
 
         string linea;
 
@@ -52,11 +53,11 @@ int main()
             string palabra = "";
             string signos = ", . ; : ¿ ? ! ¡ ( ) [ ] { } - / * $ « »";
 
-            for(int i = 0; i < linea.size(); i++){
+            for(unsigned int i = 0; i < linea.size(); i++){
 
                 if(linea[i] != ' '){
 
-                    for(int j = 0; j < signos.size(); j++){
+                    for(unsigned int j = 0; j < signos.size(); j++){
                         if(linea[i] == signos[j]){
                             linea[i] = ' ';
                         }
@@ -167,16 +168,19 @@ int main()
 
         //--------------------------------------------------------
         //---------------- Palabras mas utilizadas ---------
-        SortedArrayList<KVPair<int,string>* > *listaPalabrasMasUsadas = new SortedArrayList<KVPair<int,string>*>(10000);
+        AVLTree<KVPair<int,string>* > *listaPalabrasMasUsadas = new AVLTree<KVPair<int,string>*>();
         List<string> *listaPalabras = diccionarioPalabrasListas->getKeys();
         for(listaPalabras->goToStart(); !listaPalabras->atEnd(); listaPalabras->next()){
             DLinkedList<int> *temp = diccionarioPalabrasListas->getValue(listaPalabras->getElement());
             listaPalabrasMasUsadas->insert(new KVPair<int,string>(temp->getSize(), listaPalabras->getElement() ) );
         }
+        List<KVPair<int,string>* > *listaPalabrasMas = listaPalabrasMasUsadas->getElements();
+        listaPalabrasMas->goToEnd();
+        listaPalabrasMas->previous();
         for(int i = 0; i < 100; i++){
-            KVPair<int,string> *temp = listaPalabrasMasUsadas->getElement();
+            KVPair<int,string> *temp = listaPalabrasMas->getElement();
             cout<<"La palabra "<<temp->getValue()<<" se repite un total de: "<<temp->getKey()<<" veces."<<endl;
-            listaPalabrasMasUsadas->next();
+            listaPalabrasMas->previous();
         }
 
 
