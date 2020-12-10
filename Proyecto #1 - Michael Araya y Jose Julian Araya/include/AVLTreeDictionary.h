@@ -10,10 +10,7 @@
 #define DEFAULT_MAX_SIZE 1024
 
 template <typename K, typename V>
-class AVLTreeDictionary : public Dictionary<K, V>
-{
-    protected:
-
+class AVLTreeDictionary : public Dictionary<K, V>{
     private:
 
     AVLTree<KVPair<K, V>> pairs;

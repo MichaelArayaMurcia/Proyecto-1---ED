@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1607573120 source:c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\main.cpp
+1607573998 source:c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\main.cpp
 	<iostream>
 	"Trie.h"
 	<fstream>
@@ -12,7 +12,7 @@
 	<wchar.h>
 	<SortedArrayDictionary.h>
 
-1607304451 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\avltreedictionary.h
+1607573691 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\avltreedictionary.h
 	<iostream>
 	"Dictionary.h"
 	"KVPair.h"

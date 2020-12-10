@@ -50,7 +50,7 @@ int main()
             diccionarioLineasAVL->insert(numeroLinea, linea);
 
             string palabra = "";
-            string signos = ", . ; : ¿ ? ! ¡ ( ) [ ] { } - / * $ ";
+            string signos = ", . ; : ¿ ? ! ¡ ( ) [ ] { } - / * $ « »";
 
             for(int i = 0; i < linea.size(); i++){
 
@@ -81,6 +81,9 @@ int main()
 
                     if(!diccionarioPalabrasListas->contains(palabra)){
                         diccionarioPalabrasListas->insert(palabra, new DLinkedList<int>());
+                        DLinkedList<int> *lista = diccionarioPalabrasListas->getValue(palabra);
+                        lista->insert(numeroLinea);
+                        diccionarioPalabrasListas->setValue(palabra, lista);
                     }
 
                     else {
@@ -170,7 +173,7 @@ int main()
             DLinkedList<int> *temp = diccionarioPalabrasListas->getValue(listaPalabras->getElement());
             listaPalabrasMasUsadas->insert(new KVPair<int,string>(temp->getSize(), listaPalabras->getElement() ) );
         }
-        for(int i = 0; i < 50; i++){
+        for(int i = 0; i < 100; i++){
             KVPair<int,string> *temp = listaPalabrasMasUsadas->getElement();
             cout<<"La palabra "<<temp->getValue()<<" se repite un total de: "<<temp->getKey()<<" veces."<<endl;
             listaPalabrasMasUsadas->next();
