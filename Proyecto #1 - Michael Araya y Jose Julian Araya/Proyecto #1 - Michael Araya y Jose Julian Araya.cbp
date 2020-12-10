@@ -36,6 +36,7 @@
 		</Compiler>
 		<Unit filename="include/AVLTree.h" />
 		<Unit filename="include/AVLTreeDictionary.h" />
+		<Unit filename="include/ArrayList.h" />
 		<Unit filename="include/BSTNode.h" />
 		<Unit filename="include/BSTree.h" />
 		<Unit filename="include/BSTreeDictionary.h" />

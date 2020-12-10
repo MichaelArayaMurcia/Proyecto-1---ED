@@ -1,16 +1,24 @@
 #include <iostream>
 #include "Trie.h"
 #include <fstream>
-#include <Windows.h>
+#include <windows.h>
 #include <string>
 #include <AVLTreeDictionary.h>
-
+#include <locale.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <SortedArrayDictionary.h>
 
 using namespace std;
 
+void buscarPrefijo(){
+
+}
+
 int main()
 {
-    setlocale(LC_ALL, "spanish");
+    setlocale(LC_ALL, "");
     SetConsoleCP(1252);
     SetConsoleOutputCP(1252);
 
@@ -42,17 +50,20 @@ int main()
             diccionarioLineasAVL->insert(numeroLinea, linea);
 
             string palabra = "";
-            string signos = ",.;:¿?!¡()[]{}'""-_/*$";
+            string signos = ", . ; : ¿ ? ! ¡ ( ) [ ] { } - / * $ ";
 
             for(int i = 0; i < linea.size(); i++){
+
                 if(linea[i] != ' '){
-                    char caracter = linea[i];
 
                     for(int j = 0; j < signos.size(); j++){
                         if(linea[i] == signos[j]){
                             linea[i] = ' ';
                         }
                     }
+
+                    char caracter = linea[i];
+
 
                     if(caracter != ' '){
                         caracter = tolower(caracter);
@@ -104,7 +115,8 @@ int main()
                 string palabra = lista->getElement();
 
                 DLinkedList<int> *lista = diccionarioPalabrasListas->getValue(palabra);
-                int veces = lista->getSize() + 1;
+                int veces = lista->getSize();
+
                 cout << "La palabra: " << palabra << " sale: " << veces << endl;
 
 
@@ -118,9 +130,42 @@ int main()
         cin >> palabra;
 
         if(triePalabras->containsWord(palabra)){
+            DLinkedList<int> *listaLineas = diccionarioPalabrasListas->getValue(palabra);
 
-
+            cout << "Palabra esta en las lineas: " << endl;
+            for(listaLineas->goToStart(); !listaLineas->atEnd(); listaLineas->next()){
+                int lineaNumero = listaLineas->getElement();
+                 cout << lineaNumero << endl;
+                cout << diccionarioLineasAVL->getValue(lineaNumero) << endl;
+            }
         }
+
+        //--------------------------------------------------------
+        //---------------- Buscar por cantidad de letras ---------
+        cout << "Ingrese la cantidad de letras por palabra que quiere buscar" << endl;
+        int cantidadLetras = 0;
+        cin >> cantidadLetras;
+
+        SortedArrayList<string> *listaOrdenada = new SortedArrayList<string>();
+
+        List<string> *listaKeys = diccionarioPalabrasListas->getKeys();
+
+        for(listaKeys->goToStart(); !listaKeys->atEnd(); listaKeys->next()){
+            string palabra = listaKeys->getElement();
+
+            if(palabra.size() == cantidadLetras){
+                listaOrdenada->insert(palabra);
+            }
+        }
+
+        for(listaOrdenada->goToStart(); !listaOrdenada->atEnd(); listaOrdenada->next()){
+            string palabra = listaOrdenada->getElement();
+            cout << palabra << endl;
+        }
+
+        //--------------------------------------------------------
+        //---------------- Palabras mas utilizadas ---------
+
 
         // Close the file
         MyReadFile.close();
