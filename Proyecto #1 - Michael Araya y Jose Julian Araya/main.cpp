@@ -167,16 +167,43 @@ int main()
         }
 
         //--------------------------------------------------------
-        //---------------- Palabras mas utilizadas ---------
+        //---------------- Palabras mas utilizadas ---------------
+        Trie *triePalabrasIgnorar = new Trie();
+
+        ifstream archivoIgnorar("ignorar.txt");
+        if(archivoIgnorar.fail()){
+            cout << "No se pudo abrir el archivo" << endl;
+        } else {
+            while (getline (archivoIgnorar, linea)) {
+                if(!triePalabrasIgnorar->containsWord(linea)){
+                    triePalabrasIgnorar->insert(linea);
+                }
+
+            }
+        }
+
+
+
         AVLTree<KVPair<int,string>* > *listaPalabrasMasUsadas = new AVLTree<KVPair<int,string>*>();
         List<string> *listaPalabras = diccionarioPalabrasListas->getKeys();
+
+
         for(listaPalabras->goToStart(); !listaPalabras->atEnd(); listaPalabras->next()){
-            DLinkedList<int> *temp = diccionarioPalabrasListas->getValue(listaPalabras->getElement());
-            listaPalabrasMasUsadas->insert(new KVPair<int,string>(temp->getSize(), listaPalabras->getElement() ) );
+            string palabra = listaPalabras->getElement();
+
+            DLinkedList<int> *temp = diccionarioPalabrasListas->getValue(palabra);
+
+            if(!triePalabrasIgnorar->containsWord(palabra)){
+                listaPalabrasMasUsadas->insert(new KVPair<int,string>(temp->getSize(), palabra ) );
+            }
+
         }
+
+
         List<KVPair<int,string>* > *listaPalabrasMas = listaPalabrasMasUsadas->getElements();
         listaPalabrasMas->goToEnd();
         listaPalabrasMas->previous();
+
         for(int i = 0; i < 100; i++){
             KVPair<int,string> *temp = listaPalabrasMas->getElement();
             cout<<"La palabra "<<temp->getValue()<<" se repite un total de: "<<temp->getKey()<<" veces."<<endl;

@@ -50,7 +50,7 @@
 1607303462 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\trienode.h
 	"AVLTreeDictionary.h"
 
-1607569616 source:c:\users\h\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\main.cpp
+1607648529 source:c:\users\h\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\main.cpp
 	<iostream>
 	"Trie.h"
 	<fstream>
@@ -61,6 +61,8 @@
 	<stdlib.h>
 	<stdio.h>
 	<wchar.h>
+	<SortedArrayDictionary.h>
+	<AVLTreeMayor.h>
 
 1607480322 c:\users\h\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\trie.h
 	"TrieNode.h"
@@ -71,7 +73,7 @@
 1607305845 c:\users\h\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\trienode.h
 	"AVLTreeDictionary.h"
 
-1607305845 c:\users\h\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\avltreedictionary.h
+1607614486 c:\users\h\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\avltreedictionary.h
 	<iostream>
 	"Dictionary.h"
 	"KVPair.h"
@@ -114,4 +116,20 @@
 	<stdexcept>
 
 1607642351 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\avltreemayor.h
+
+1603491257 c:\users\h\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\sortedarraydictionary.h
+	"Dictionary.h"
+	"SortedArrayList.h"
+	"DLinkedList.h"
+	"KVPair.h"
+	<stdexcept>
+
+1607573360 c:\users\h\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\sortedarraylist.h
+	"arraylist.h"
+
+1603320973 c:\users\h\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\arraylist.h
+	"list.h"
+	<stdexcept>
+
+1607644489 c:\users\h\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\avltreemayor.h
 
