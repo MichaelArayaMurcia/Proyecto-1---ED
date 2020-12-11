@@ -184,7 +184,7 @@ int main()
 
 
 
-        AVLTree<KVPair<int,string>* > *listaPalabrasMasUsadas = new AVLTree<KVPair<int,string>*>();
+        SortedArrayList<KVPair<int,string>* > *listaPalabrasMasUsadas = new SortedArrayList<KVPair<int,string>*>(10000);
         List<string> *listaPalabras = diccionarioPalabrasListas->getKeys();
 
 
@@ -200,14 +200,11 @@ int main()
         }
 
 
-        List<KVPair<int,string>* > *listaPalabrasMas = listaPalabrasMasUsadas->getElements();
-        listaPalabrasMas->goToEnd();
-        listaPalabrasMas->previous();
 
-        for(int i = 0; i < 100; i++){
-            KVPair<int,string> *temp = listaPalabrasMas->getElement();
+        for(int i = 0; i < listaPalabrasMasUsadas->getSize(); i++){
+            KVPair<int,string> *temp = listaPalabrasMasUsadas->getElement();
             cout<<"La palabra "<<temp->getValue()<<" se repite un total de: "<<temp->getKey()<<" veces."<<endl;
-            listaPalabrasMas->previous();
+            listaPalabrasMasUsadas->next();
         }
 
 
