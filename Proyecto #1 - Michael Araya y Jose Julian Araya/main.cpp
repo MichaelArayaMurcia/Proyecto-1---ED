@@ -172,7 +172,13 @@ int main(){
         //---------------- Buscar por cantidad de letras ---------
         cout << "Ingrese la cantidad de letras por palabra que quiere buscar" << endl;
         int cantidadLetras = 0;
-        cin >> cantidadLetras;
+
+        while(!(cin>>cantidadLetras) || cantidadLetras< 1){
+            cout<<"La cantidad ingresada no es valida"<<endl;
+            cout<<"Escoja una cantidad valida: "<<endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
 
         SortedArrayList<string> *listaOrdenada = new SortedArrayList<string>(10000);
 
@@ -246,7 +252,15 @@ int main(){
         //---------------- Palabras mas utilizadas ---------------
         cout<<"Ingrese la cantidad de palabras que desea mostrar: "<<endl;
         int cantidadpalabras;
-        cin>>cantidadpalabras;
+
+
+        while(!(cin>>cantidadpalabras) || cantidadpalabras< 1){
+            cout<<"La cantidad ingresada no es valida"<<endl;
+            cout<<"Escoja una cantidad valida: "<<endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+
         listaPalabrasMasUsadas->goToStart();
         for(int i = 0; i < cantidadpalabras; i++){
 
@@ -262,7 +276,14 @@ int main(){
         //--------------------Palabras menos utilizadas-------------
         cout<<"Ingrese la cantidad de palabras que desea mostrar: "<<endl;
         int cantidadpalabras;
-        cin>>cantidadpalabras;
+
+        while(!(cin>>cantidadpalabras) || cantidadpalabras< 1){
+            cout<<"La cantidad ingresada no es valida"<<endl;
+            cout<<"Escoja una cantidad valida: "<<endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+
         listaPalabrasMasUsadas->goToEnd();
         listaPalabrasMasUsadas->previous();
          for(int i = 0; i < cantidadpalabras; i++){
