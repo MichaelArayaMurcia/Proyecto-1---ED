@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdexcept>
 #include "Trie.h"
 #include <fstream>
 #include <windows.h>
@@ -10,6 +11,7 @@
 #include <wchar.h>
 #include <SortedArrayDictionary.h>
 #include <AVLTreeMayor.h>
+#include <limits>
 
 using namespace std;
 
@@ -17,8 +19,7 @@ void buscarPrefijo(){
 
 }
 
-int main()
-{
+int main(){
     setlocale(LC_ALL, "");
     SetConsoleCP(1252);
     SetConsoleOutputCP(1252);
@@ -26,6 +27,9 @@ int main()
     AVLTreeDictionary<int,string> *diccionarioLineasAVL = new AVLTreeDictionary<int,string>();
     AVLTreeDictionary<string, DLinkedList<int>*> *diccionarioPalabrasListas = new AVLTreeDictionary<string, DLinkedList<int>*>();
     Trie *triePalabras = new Trie();
+    bool salir = false;
+    int opcion1 = 0;
+    int opcion2 = 0;
 
     cout << "Bienvenido!" << endl;
     cout << "Este programa usa la estructura de datos AVL para analizar datos sobre un archivo" << endl;
@@ -39,10 +43,9 @@ int main()
 
     ifstream MyReadFile(nombreArchivo + ".txt");
     if(MyReadFile.fail()){
-        cout << "No es posible abrir el archivo" << endl;
+        throw runtime_error("No es posible abrir el archivo");
     }else {
         int numeroLinea = 1;
-        //int numeroPalabra = 1;
 
         string linea;
 
@@ -98,10 +101,25 @@ int main()
             }
             numeroLinea += 1;
         }
+        while(!salir){
+        cout<<"Menu: "<<endl;
+        cout<<"1- Consultar prefijo."<<endl;
+        cout<<"2- Buscar palabra."<<endl;
+        cout<<"3- Buscar por cantidad de letras."<<endl;
+        cout<<"4- Palabras mas utilizadas."<<endl;
+        cout<<"5- Salir del programa."<<endl;
 
-        //cout << numeroLinea;
+        while(!(cin>>opcion1) || opcion1< 1){
+            cout<<"La opcion ingresada no es valida"<<endl;
+            cout<<"Escoja una opcion valida: "<<endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-        //-------------------------------------------------
+        }
+
+        if(opcion1 == 1){
+
+            //-------------------------------------------------
         //---------------- Consulta prefijo ---------------
 
         string prefijo = "";
@@ -126,7 +144,11 @@ int main()
             }
         }
 
-        //-------------------------------------------------
+
+        }
+        else if(opcion1 == 2){
+
+              //-------------------------------------------------
         //---------------- Buscar palabra ---------------
         cout << "Ingrese la palabra que quiere buscar" << endl;
         string palabra = "";
@@ -135,15 +157,18 @@ int main()
         if(triePalabras->containsWord(palabra)){
             DLinkedList<int> *listaLineas = diccionarioPalabrasListas->getValue(palabra);
 
-            cout << "Palabra esta en las lineas: " << endl;
+            cout << "La palabra "<<palabra<< " se encuentra en las siguientes lineas: " << endl;
             for(listaLineas->goToStart(); !listaLineas->atEnd(); listaLineas->next()){
                 int lineaNumero = listaLineas->getElement();
-                 cout << lineaNumero << endl;
-                cout << diccionarioLineasAVL->getValue(lineaNumero) << endl;
+                 cout <<"Linea numero "<< lineaNumero<<": ";
+                cout << diccionarioLineasAVL->getValue(lineaNumero) <<"\n"<< endl;
             }
         }
 
-        //--------------------------------------------------------
+        }
+        else if(opcion1 == 3){
+
+               //--------------------------------------------------------
         //---------------- Buscar por cantidad de letras ---------
         cout << "Ingrese la cantidad de letras por palabra que quiere buscar" << endl;
         int cantidadLetras = 0;
@@ -163,11 +188,15 @@ int main()
 
         for(listaOrdenada->goToStart(); !listaOrdenada->atEnd(); listaOrdenada->next()){
             string palabra = listaOrdenada->getElement();
-            cout << palabra << endl;
+            cout << palabra << "\t";
         }
+        cout<<endl;
 
-        //--------------------------------------------------------
-        //---------------- Palabras mas utilizadas ---------------
+
+        }
+        else if(opcion1 == 4){
+
+
         Trie *triePalabrasIgnorar = new Trie();
 
         ifstream archivoIgnorar("ignorar.txt");
@@ -200,14 +229,67 @@ int main()
         }
 
 
+        cout<<"1- Ver top."<<endl;
+        cout<<"2- Ver palabras menos utilizadas."<<endl;
+        cout<<"3- Regresar."<<endl;
 
-        for(int i = 0; i < listaPalabrasMasUsadas->getSize(); i++){
+        while(!(cin>>opcion2) || opcion2< 1){
+            cout<<"La opcion ingresada no es valida"<<endl;
+            cout<<"Escoja una opcion valida: "<<endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+
+
+        if(opcion2 == 1){
+        //--------------------------------------------------------
+        //---------------- Palabras mas utilizadas ---------------
+        cout<<"Ingrese la cantidad de palabras que desea mostrar: "<<endl;
+        int cantidadpalabras;
+        cin>>cantidadpalabras;
+        listaPalabrasMasUsadas->goToStart();
+        for(int i = 0; i < cantidadpalabras; i++){
+
             KVPair<int,string> *temp = listaPalabrasMasUsadas->getElement();
             cout<<"La palabra "<<temp->getValue()<<" se repite un total de: "<<temp->getKey()<<" veces."<<endl;
             listaPalabrasMasUsadas->next();
         }
 
+        }
+        else if(opcion2 == 2){
 
+        //----------------------------------------------------------------------
+        //--------------------Palabras menos utilizadas-------------
+        cout<<"Ingrese la cantidad de palabras que desea mostrar: "<<endl;
+        int cantidadpalabras;
+        cin>>cantidadpalabras;
+        listaPalabrasMasUsadas->goToEnd();
+        listaPalabrasMasUsadas->previous();
+         for(int i = 0; i < cantidadpalabras; i++){
+
+            KVPair<int,string> *temp = listaPalabrasMasUsadas->getElement();
+            cout<<"La palabra "<<temp->getValue()<<" se repite un total de: "<<temp->getKey()<<" veces."<<endl;
+            listaPalabrasMasUsadas->previous();
+        }
+
+        }
+        else if(opcion2 == 3){
+            continue;
+        }
+        else{
+
+            cout<<"Opcion no valida."<<endl;
+
+        }
+        }
+
+        else if(opcion1 == 5){
+            salir = true;
+        }
+        else{
+            cout<<"Digite una opcion valida."<<endl;
+        }
+        }
 
         // Close the file
         MyReadFile.close();

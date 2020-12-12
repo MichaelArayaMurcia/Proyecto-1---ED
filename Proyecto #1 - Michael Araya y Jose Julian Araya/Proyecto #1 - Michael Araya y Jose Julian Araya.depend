@@ -1,6 +1,7 @@
 # depslib dependency file v1.0
-1607651597 source:c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\main.cpp
+1607743992 source:c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\main.cpp
 	<iostream>
+	<stdexcept>
 	"Trie.h"
 	<fstream>
 	<windows.h>
@@ -12,6 +13,7 @@
 	<wchar.h>
 	<SortedArrayDictionary.h>
 	<AVLTreeMayor.h>
+	<limits>
 
 1607573691 c:\users\araya\github\proyecto-1---ed\proyecto #1 - michael araya y jose julian araya\include\avltreedictionary.h
 	<iostream>
