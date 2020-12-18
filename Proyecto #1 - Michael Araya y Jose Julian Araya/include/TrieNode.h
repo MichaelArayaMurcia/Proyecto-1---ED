@@ -1,18 +1,22 @@
 #ifndef TRIENODE_H
 #define TRIENODE_H
 
-#include "AVLTreeDictionary.h"
+#include "BSTreeDictionary.h"
+#include "arraylist.h"
+
 
 class TrieNode {
 private:
     bool isFinal;
     int prefixCount;
-    AVLTreeDictionary<char, TrieNode*> children;
+    BSTreeDictionary<char, TrieNode*> children;
+    ArrayList<int>* listaEnteros;
 
 public:
     TrieNode() : children() {
         isFinal = false;
         prefixCount = 0;
+        listaEnteros = new ArrayList<int>();
     }
     ~TrieNode() {}
     bool getIsFinal() {
@@ -51,6 +55,13 @@ public:
     List<TrieNode*>* getChildrenPointers() {
         return children.getValues();
     }
+    void insertarnumero(int i){
+        listaEnteros->insert(i);
+    }
+    List<int>* getListaEnteros(){
+        return listaEnteros;
+    }
+
 };
 
 #endif // TRIENODE_H

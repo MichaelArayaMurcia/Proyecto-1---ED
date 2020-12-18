@@ -43,6 +43,23 @@ private:
         delete children;
     }
 
+    void getPlabrasTamannoAux(TrieNode* current, int cantidad, List<string>* words, string palabra) {
+        if (current->getIsFinal() && cantidad == 0)
+            words->append(palabra);
+        if(cantidad != 0){
+            List<char>* children = current->getChildren();
+            for (children->goToStart(); !children->atEnd(); children->next()) {
+                char c = children->getElement();
+                string newPalabra = palabra;
+                newPalabra.append(1, c);
+                cantidad -=1;
+                getPlabrasTamannoAux(current->getChild(c), cantidad, words, newPalabra);
+            }
+            delete children;
+        }
+    }
+
+
 public:
     Trie() {
         root = new TrieNode();
@@ -51,7 +68,7 @@ public:
         clear();
         delete root;
     }
-    void insert(string word) {
+    void insert(string word, int linea) {
         if (containsWord(word))
             throw runtime_error("Word already in trie.");
         TrieNode* current = root;
@@ -63,6 +80,7 @@ public:
         }
         current->increaseCount();
         current->setIsFinal(true);
+        current->insertarnumero(linea);
     }
     bool containsWord(string word) {
         TrieNode* node = find(word);
@@ -113,6 +131,26 @@ public:
         }
         delete words;
     }
+
+    void insertarLinea(string word, int linea) {
+        TrieNode* node = find(word);
+
+        if(node->getIsFinal()) node->insertarnumero(linea);
+    }
+
+     List<int>* getListaLineas(string word) {
+        TrieNode* node = find(word);
+        return node->getListaEnteros();
+    }
+
+    List<string>* getPlabrasTamanno(int cantidad) {
+        List<string>* words = new DLinkedList<string>();
+        TrieNode* current = root;
+        string palabra;
+        getPlabrasTamannoAux(current, cantidad, words, palabra);
+        return words;
+    }
+
 };
 
 #endif // TRIE_H

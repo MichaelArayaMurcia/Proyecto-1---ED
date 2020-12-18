@@ -9,30 +9,28 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <wchar.h>
+#include "HashTable.h"
 #include <SortedArrayDictionary.h>
 #include <AVLTreeMayor.h>
 #include <limits>
+#include "arraylist.h"
 
 using namespace std;
 
-void buscarPrefijo(){
-
-}
 
 int main(){
     setlocale(LC_ALL, "");
     SetConsoleCP(1252);
     SetConsoleOutputCP(1252);
 
-    AVLTreeDictionary<int,string> *diccionarioLineasAVL = new AVLTreeDictionary<int,string>();
-    AVLTreeDictionary<string, DLinkedList<int>*> *diccionarioPalabrasListas = new AVLTreeDictionary<string, DLinkedList<int>*>();
+    ArrayList<string> *listadeLineas = new ArrayList<string>();
     Trie *triePalabras = new Trie();
     bool salir = false;
     int opcion1 = 0;
     int opcion2 = 0;
 
     cout << "Bienvenido!" << endl;
-    cout << "Este programa usa la estructura de datos AVL para analizar datos sobre un archivo" << endl;
+    cout << "Este programa usa la estructura de datos Trie para analizar datos sobre un archivo" << endl;
 
     // Read from the text file
 
@@ -41,9 +39,10 @@ int main(){
     cout << "Ingrese el nombre del archivo que va a utilizar" << endl;
     getline(cin,nombreArchivo);
 
-    ifstream MyReadFile(nombreArchivo + ".txt");
+    ifstream MyReadFile(nombreArchivo);
     if(MyReadFile.fail()){
-        throw runtime_error("No es posible abrir el archivo");
+        cout<<"No es posible abrir el archivo"<<endl;
+        exit(0);
     }else {
         int numeroLinea = 1;
 
@@ -51,10 +50,10 @@ int main(){
 
 
         while (getline (MyReadFile, linea)) {
-            diccionarioLineasAVL->insert(numeroLinea, linea);
+            listadeLineas->append(linea);
 
             string palabra = "";
-            string signos = ", . ; : ¿ ? ! ¡ ( ) [ ] { } - / * $ « »";
+            string signos = ", . ; : ¿ ? ! ¡ ( ) [ ] { } ­   - / * _  $ « » ' \" 1 2 3 4 5 6 7 8 9 0";
 
             for(unsigned int i = 0; i < linea.size(); i++){
 
@@ -79,22 +78,12 @@ int main(){
                 else {
 
                     if(!triePalabras->containsWord(palabra)){
-                      triePalabras->insert(palabra);
+                      triePalabras->insert(palabra, numeroLinea);
+                    }
+                    else{
+                        triePalabras->insertarLinea(palabra, numeroLinea);
                     }
 
-
-                    if(!diccionarioPalabrasListas->contains(palabra)){
-                        diccionarioPalabrasListas->insert(palabra, new DLinkedList<int>());
-                        DLinkedList<int> *lista = diccionarioPalabrasListas->getValue(palabra);
-                        lista->insert(numeroLinea);
-                        diccionarioPalabrasListas->setValue(palabra, lista);
-                    }
-
-                    else {
-                        DLinkedList<int> *lista = diccionarioPalabrasListas->getValue(palabra);
-                        lista->insert(numeroLinea);
-                        diccionarioPalabrasListas->setValue(palabra, lista);
-                    }
 
                     palabra = "";
                 }
@@ -135,7 +124,7 @@ int main(){
             for(lista->goToStart(); !lista->atEnd(); lista->next()){
                 string palabra = lista->getElement();
 
-                DLinkedList<int> *lista = diccionarioPalabrasListas->getValue(palabra);
+                List<int> *lista = triePalabras->getListaLineas(palabra);
                 int veces = lista->getSize();
 
                 cout << "La palabra: " << palabra << " sale: " << veces << endl;
@@ -148,27 +137,27 @@ int main(){
         }
         else if(opcion1 == 2){
 
-              //-------------------------------------------------
+        //-------------------------------------------------
         //---------------- Buscar palabra ---------------
         cout << "Ingrese la palabra que quiere buscar" << endl;
         string palabra = "";
         cin >> palabra;
 
         if(triePalabras->containsWord(palabra)){
-            DLinkedList<int> *listaLineas = diccionarioPalabrasListas->getValue(palabra);
-
+            List<int> *listaLineas = triePalabras->getListaLineas(palabra);
             cout << "La palabra "<<palabra<< " se encuentra en las siguientes lineas: " << endl;
             for(listaLineas->goToStart(); !listaLineas->atEnd(); listaLineas->next()){
                 int lineaNumero = listaLineas->getElement();
                  cout <<"Linea numero "<< lineaNumero<<": ";
-                cout << diccionarioLineasAVL->getValue(lineaNumero) <<"\n"<< endl;
+                 listadeLineas->goToPos(lineaNumero);
+                cout << listadeLineas->getElement()<<"\n"<< endl;
             }
         }
 
         }
         else if(opcion1 == 3){
 
-               //--------------------------------------------------------
+        //--------------------------------------------------------
         //---------------- Buscar por cantidad de letras ---------
         cout << "Ingrese la cantidad de letras por palabra que quiere buscar" << endl;
         int cantidadLetras = 0;
@@ -180,16 +169,12 @@ int main(){
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
 
-        SortedArrayList<string> *listaOrdenada = new SortedArrayList<string>(10000);
+        SortedArrayList<string> *listaOrdenada = new SortedArrayList<string>(1024);
 
-        List<string> *listaKeys = diccionarioPalabrasListas->getKeys();
-
-        for(listaKeys->goToStart(); !listaKeys->atEnd(); listaKeys->next()){
-            string palabra = listaKeys->getElement();
-
-            if(palabra.size() == cantidadLetras){
-                listaOrdenada->insert(palabra);
-            }
+        List<string> *listaPalabras = triePalabras->getMatches("");
+        for(listaPalabras->goToStart(); !listaPalabras->atEnd(); listaPalabras->next()){
+            string temp = listaPalabras->getElement();
+            if(temp.size()==cantidadLetras) listaOrdenada->insert(temp);
         }
 
         for(listaOrdenada->goToStart(); !listaOrdenada->atEnd(); listaOrdenada->next()){
@@ -211,7 +196,7 @@ int main(){
         } else {
             while (getline (archivoIgnorar, linea)) {
                 if(!triePalabrasIgnorar->containsWord(linea)){
-                    triePalabrasIgnorar->insert(linea);
+                    triePalabrasIgnorar->insert(linea, 1);
                 }
 
             }
@@ -219,17 +204,18 @@ int main(){
 
 
 
-        SortedArrayList<KVPair<int,string>* > *listaPalabrasMasUsadas = new SortedArrayList<KVPair<int,string>*>(10000);
-        List<string> *listaPalabras = diccionarioPalabrasListas->getKeys();
+        SortedArrayList<KVPair<int,string>* > listaPalabrasMasUsadas(1024);
+        List<string> *listaPalabras = triePalabras->getMatches("");
 
 
         for(listaPalabras->goToStart(); !listaPalabras->atEnd(); listaPalabras->next()){
             string palabra = listaPalabras->getElement();
 
-            DLinkedList<int> *temp = diccionarioPalabrasListas->getValue(palabra);
+            List<int> *temp = triePalabras->getListaLineas(palabra);
 
             if(!triePalabrasIgnorar->containsWord(palabra)){
-                listaPalabrasMasUsadas->insert(new KVPair<int,string>(temp->getSize(), palabra ) );
+                KVPair<int,string> *pairs = new KVPair<int,string>(temp->getSize(), palabra );
+                listaPalabrasMasUsadas.insert(pairs);
             }
 
         }
@@ -261,12 +247,12 @@ int main(){
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
 
-        listaPalabrasMasUsadas->goToStart();
+        listaPalabrasMasUsadas.goToStart();
         for(int i = 0; i < cantidadpalabras; i++){
 
-            KVPair<int,string> *temp = listaPalabrasMasUsadas->getElement();
+            KVPair<int,string> *temp = listaPalabrasMasUsadas.getElement();
             cout<<"La palabra "<<temp->getValue()<<" se repite un total de: "<<temp->getKey()<<" veces."<<endl;
-            listaPalabrasMasUsadas->next();
+            listaPalabrasMasUsadas.next();
         }
 
         }
@@ -284,13 +270,13 @@ int main(){
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
 
-        listaPalabrasMasUsadas->goToEnd();
-        listaPalabrasMasUsadas->previous();
+        listaPalabrasMasUsadas.goToEnd();
+        listaPalabrasMasUsadas.previous();
          for(int i = 0; i < cantidadpalabras; i++){
 
-            KVPair<int,string> *temp = listaPalabrasMasUsadas->getElement();
+            KVPair<int,string> *temp = listaPalabrasMasUsadas.getElement();
             cout<<"La palabra "<<temp->getValue()<<" se repite un total de: "<<temp->getKey()<<" veces."<<endl;
-            listaPalabrasMasUsadas->previous();
+            listaPalabrasMasUsadas.previous();
         }
 
         }

@@ -1,6 +1,5 @@
 #ifndef SORTEDARRAYDICTIONARY_H
 #define SORTEDARRAYDICTIONARY_H
-
 #include "Dictionary.h"
 #include "SortedArrayList.h"
 #include "DLinkedList.h"
